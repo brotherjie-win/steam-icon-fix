@@ -24,4 +24,5 @@
 (1)Windows系统：在控制面板中打开高级系统设置（win8以上可以直接用搜索），选择环境变量，在用户变量中添加两条：变量名1：HTTP_PROXY，变量值1：包括协议的代理服务器地址；变量名2：HTTPS_PROXY，变量值2：包括协议的代理服务器地址  
 (2)macOS/Linux系统：在终端中输入以下两条命令：命令1：export HTTP_PROXY="包括协议的代理服务器地址"；命令2：export HTTPS_PROXY="包括协议的代理服务器地址"；  
 (3)注意：如果代理软件/服务器不支持HTTPS/FTP代理，只支持HTTP/SOCKS，请将协议设置为其中之一，如Clash(CFW)，设置为"http://" 或 "socks5://"开头的地址  
+5、修复完成之后一般刷新几下图标即可恢复正常，或者下载代码/tool中的rebuild_icon_cache.bat文件重建图标缓存
 
