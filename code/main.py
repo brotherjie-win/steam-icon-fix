@@ -9,6 +9,7 @@ default_steam_install_folder_list = ["Program Files (x86)/Steam", "Program Files
 steam_installation_folder = ""
 steam_icon_folder = ""
 all_game_id_list = []
+max_retry = 5
 
 
 def get_disklist():
@@ -52,8 +53,8 @@ def scan_steam_game_id():
         print("Steam游戏列表库文件损坏，无法继续")
         return False
     vdf_info_dict = vdf.load(open(steam_lib_vdf))
-    for lib_num in range(len(vdf_info_dict['libraryfolders'].keys())):
-        current_lib_id_list = list(vdf_info_dict['libraryfolders'][str(lib_num)]['apps'].keys())
+    for lib_id in vdf_info_dict['libraryfolders'].keys():
+        current_lib_id_list = list(vdf_info_dict['libraryfolders'][lib_id]['apps'].keys())
         all_game_id_list.extend(current_lib_id_list)
     all_game_id_list = list(set(all_game_id_list))
     all_game_id_list = [int(gid) for gid in all_game_id_list]
@@ -78,7 +79,14 @@ def dl_all_game_icon():
                 continue
             game_icon_url = steam_client_icon_base_url + str(app_id) + "/" + game_info["clienticon"] + '.ico'
             game_icon_filename = os.path.join(steam_icon_folder, game_info["clienticon"] + '.ico')
-            urlretrieve(game_icon_url, game_icon_filename)
+            trials = 0
+            while trials < max_retry:
+                try:
+                    urlretrieve(game_icon_url, game_icon_filename)
+                    break
+                except:
+                    trials += 1
+                    print("游戏 %s 程序下载失败(第%d次)，重试中..." % (game_name, trials))
             if os.path.exists(game_icon_filename):
                 print("游戏 %s 程序图标下载成功" % game_name)
             else:
