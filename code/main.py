@@ -52,8 +52,8 @@ def scan_steam_game_id():
         print("Steam游戏列表库文件损坏，无法继续")
         return False
     vdf_info_dict = vdf.load(open(steam_lib_vdf))
-    for lib_num in range(len(vdf_info_dict['libraryfolders'].keys())):
-        current_lib_id_list = list(vdf_info_dict['libraryfolders'][str(lib_num)]['apps'].keys())
+    for lib_id in vdf_info_dict['libraryfolders'].keys():
+        current_lib_id_list = list(vdf_info_dict['libraryfolders'][lib_id]['apps'].keys())
         all_game_id_list.extend(current_lib_id_list)
     all_game_id_list = list(set(all_game_id_list))
     all_game_id_list = [int(gid) for gid in all_game_id_list]
