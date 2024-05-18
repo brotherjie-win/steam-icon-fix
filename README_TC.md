@@ -29,9 +29,9 @@
 2. 有些遊戲在Steam商店上架時沒有提供對應的本地化名稱翻譯，因此這些遊戲將直接顯示英文名稱。
 3. Steam常見再發行文件不提供任何圖標，因此會被自動跳過且沒有提示。
 ## 代理服務器用戶註意事項
-### ❌ 錯誤: 如果不按照下列步驟修改Python urllib庫使用的代理服務器地址，你可能會在基於urllib訪問網頁的任何Python程序上遇到 SSLEOFError(8, 'EOF occurred in violation of protocol')錯誤。
+### ❌ 錯誤: 如果不按照下列步驟修改Python urllib庫使用的代理服務器地址，你可能會在基於urllib訪問網站的任何Python程序上遇到 SSLEOFError(8, 'EOF occurred in violation of protocol')錯誤。
 ### ℹ 問題原因 
-如果你使用的代理服務器軟件在設置系統代理時沒有明確標明其使用的協議類型, urllib會默認代理服務器使用的協議類型和訪問時提供的URI的協議相同. 例如, 訪問HTTP網站時(URI開頭是http://), 此時使用的代理服務器地址就是"http://<proxy_ip>:<proxy_port>". 相應的，會使用"https://<proxy_ip>:<proxy_port>"(URI開頭是https://)或者"ftp://<proxy_ip>:<proxy_port>"(sites starting with ftp://)作為訪問HTTPS和FTP站點時所用的代理服務器地址。
+如果你使用的代理服務器軟件在設置系統代理時沒有明確標明其使用的協議類型, urllib會默認代理服務器使用的協議類型和訪問時提供的URI的協議相同. 例如, 訪問HTTP網站時(URI開頭是http://), 此時使用的代理服務器地址就是"http://<proxy_ip>:<proxy_port>". 相應的，會使用"https://<proxy_ip>:<proxy_port>"(URI開頭是https://)或者"ftp://<proxy_ip>:<proxy_port>"(sites starting with ftp://)作為訪問HTTPS和FTP站點時所用的代理服務器地址。因而如果你的代理服務器軟件並不支持HTTPS和FTP代理協議的話，訪問HTTPS和FTP網站的請求必然會因為握手失敗而無法發送到代理服務器。
 ### ℹ 解決方法 
 如果不需要代理服務器就能很容易的訪問Steam的話，可以臨時退出代理服務器軟件以清除系統代理設置，然後重新運行程序即可解決問題。  
 但是，如果依賴於代理服務器來訪問Steam，請按照下列方法指定代理服務器的協議類型：
