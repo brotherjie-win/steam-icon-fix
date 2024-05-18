@@ -4,7 +4,7 @@
 ## 功能
 修复Steam创建的桌面快捷方式丢失的异常情况，在重装系统或将已有游戏迁移到新电脑上时非常有用。
 ## Usage
-### ⚠ 警告: 如果将Steam安装在了程序提供的C盘默认路径中("C:\Program Files (x86)\Steam" or "C:\Program Files\Steam"), 就必须使用管理员权限运行本程序或python.exe, 否则会被系统UAC权限控制阻止并报错：PermissionError: [Errno 13].  
+### ⚠ 警告: 如果将Steam安装在了程序提供的C盘默认路径中("C:\Program Files (x86)\Steam" or "C:\Program Files\Steam"), 就必须使用管理员权限运行本程序或python.exe, 否则会被系统UAC权限控制阻止并报错：PermissionError: [Errno 13]。  
 ### ℹ 说明: 目前正在试验使用一种无需更改代码的外置翻译的模块以使得翻译工作更加简单，该模块会尽快上线。
 ### 1. 直接使用打包后的程序文件（普通用户推荐）
 1. 从[Releases](https://github.com/brotherjie-win/steam-icon-fix/releases/latest)下载打包好的程序文件，解压到适当的文件夹下。
