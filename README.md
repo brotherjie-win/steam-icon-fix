@@ -4,10 +4,10 @@ English | [简体中文](https://github.com/brotherjie-win/steam-icon-fix/blob/m
 ## Function
 Fix missing icons for Steam games and apps, especially useful when you reinstall Windows or migrate Steam games and apps to another computer.
 ## Usage
-### ⚠ Warning: If you have installed your Steam on the default location("C:\Program Files (x86)\Steam" or "C:\Program Files\Steam"), you must run our program or python.exe  with prompted privilege, otherwise you will be blocked by UAC and got a PermissionError: [Errno 13] notice.  
+### ⚠ Warning: If you have installed your Steam on the default location("C:\Program Files (x86)\Steam" or "C:\Program Files\Steam"), you must run our program or python.exe with prompted privilege, otherwise you will be blocked by UAC and got a PermissionError: [Errno 13] notice.  
 ### ℹ Info: A more convenient method without requring to modify Python codes for translating is under developing and will be released soon.
 ### 1. For Bundled Windows Program
-1. Download bundled program archive from Releases, then extract to a proper location.
+1. Download bundled program archive from [Releases](https://github.com/brotherjie-win/steam-icon-fix/releases/latest), then extract to a proper location.
 2. Switch to the folder, and simply run "steam-icon-fix.exe" and wait for steam folders scanning and missing icons downloading to process.  
 3. Click and run "rebuild_icon_cache.bat" to rebuild Windows icon cache in order for all icons to display correctly. Remember to save all your files and progress as it will restart explorer.exe, which may restart some/all explorer. 
 ### 2. For Developers/Translators
