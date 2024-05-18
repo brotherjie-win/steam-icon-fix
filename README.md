@@ -9,13 +9,14 @@ Fix missing icons for Steam games and apps, especially useful when you reinstall
 ### 1. For Bundled Windows Program
 1. Download bundled program archive from Releases, then extract to a proper location.
 2. Switch to the folder, and simply run "steam-icon-fix.exe" and wait for steam folders scanning and missing icons downloading to process.  
-3. Click and run "rebuild_icon_cache.bat" to rebuild Windows icon cache in order for all icons to display correctly. Remember to save all your files and progress as it will restart explorer.exe, which may restart some/all explorer 
+3. Click and run "rebuild_icon_cache.bat" to rebuild Windows icon cache in order for all icons to display correctly. Remember to save all your files and progress as it will restart explorer.exe, which may restart some/all explorer. 
 ### 2. For Developers/Translators
 1. Make sure you have properly configurate your Python environment, I am using Python 3.9 and 3.12 for developing and testing this program.
 2. Switch to the code folder, then create a virtual enviroment using Conda, Virtualenv or etc.
 3. Activate your virtual enviroment, then switch to the code folder and run "pip install -r requirements.txt" to solve all dependencies.
 4. Changing main.py for modifying core functions, or changing iputils.py for changing displaying language behaviors when detecting a public IPv4 address from a certain country, or changing icon_translations.py for adding or modifying translations.  
 5. Testing modified codes by running "python main.py".
+6. Click and run "rebuild_icon_cache.bat" to rebuild Windows icon cache in order for all icons to display correctly if necessary. Remember to save all your files and progress as it will restart explorer.exe, which may restart some/all explorer.
 ## Principles
 ### ℹ Info: Before fixing icons, now our program will use an IP-lookup api (Preferred API in China/Intl API for fallback) to detect your public IPv4 address to get your approximate country/region, then choosing properly language for you. 
 Supported language: Simplified Chinese(China Mainland), Traditional Chinese(Hong Kong/Macau SAR and Taiwan, China) and English(other countries/regions).
@@ -42,4 +43,3 @@ But if you rely on a proxy to access Steam, following these steps:
 (2)HTTPS_PROXY:http://<proxy_ip>:<proxy_port>  
 (3)FTP_PROXY:http://<proxy_ip>:<proxy_port>  
 5. Click "OK" on all opened setting panels to apply proxy settings, then it will be ok then.  
-
