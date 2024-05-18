@@ -23,7 +23,7 @@ Supported language: Simplified Chinese(China Mainland), Traditional Chinese(Hong
 1. The program will scan all default Steam installation folder("Program Files (x86)/Steam", "Program Files/Steam", "Steam" of each disk), if it found steam.exe within these folders, it will continue.
 2. If these folders do not exist or no steam.exe found within these folders, we will ask you to specify a valid location containg the steam.exe file and determine whether your input is valid. It will not continue fixing until detecting correct steam.exe file.
 3. It will read the Steam library configuration file(libraryfolders.vdf), which containing all locations of Steam library and all APPIDs of games and apps installed by Steam on your computer, so this file must not be broken otherwise fixing is impossible.
-4. After getting all APPID info, the program will try get the clienticon(in .ico format) filename and download icons to a subfolder named steam/games in your Steam installation folder.
+4. After getting all APPID info, the program will try get the clienticon(in .ico format) filename and download icons to a subfolder named steam/games in your Steam installation folder, max retry times for downloading a single icon is limited by 5.
 ## Special Notice
 1. This program currently supports Windows OS platform only.
 2. If some game or app does not provide a localized name, it will be displayed in English.
