@@ -1,1 +1,4 @@
-steam[client]==1.4.4
+steam[client]~=1.4.4
+vdf~=3.4
+geoip2~=4.8.0
+requests~=2.31.0

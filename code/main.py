@@ -3,6 +3,8 @@ import os
 import vdf
 from steam.client import SteamClient
 from urllib.request import urlretrieve
+from iputils import get_public_ip_lang
+from icon_translations import *
 
 steam_client_icon_base_url = "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/"
 default_steam_install_folder_list = ["Program Files (x86)/Steam", "Program Files/Steam", "Steam"]
@@ -10,6 +12,7 @@ steam_installation_folder = ""
 steam_icon_folder = ""
 all_game_id_list = []
 max_retry = 5
+display_lang = get_public_ip_lang()
 
 
 def get_disklist():
@@ -32,11 +35,11 @@ def scan_steam_installation():
                 steam_installation_folder = os.path.join(disk, install_folder).replace("\\", "/")
                 steam_icon_folder = os.path.join(steam_installation_folder, "steam/games").replace("\\", "/")
                 return True
-    print("未检测到Steam安装，请手动指定Steam安装目录")
+    print(steam_location_autodetect_failure_notice[display_lang])
     while not os.path.exists(os.path.join(steam_installation_folder, "steam.exe")):
-        steam_folder = input("请输入Steam安装目录：")
+        steam_folder = input(steam_location_manual_specifying_notice[display_lang])
         if not os.path.exists(os.path.join(steam_folder, "steam.exe")):
-            print("输入的安装目录无效，请重新输入")
+            print(steam_location_specifying_invalid_notice[display_lang])
         else:
             steam_installation_folder = steam_folder
             steam_icon_folder = os.path.join(steam_installation_folder, "steam/games").replace("\\", "/")
@@ -46,11 +49,11 @@ def scan_steam_installation():
 def scan_steam_game_id():
     global all_game_id_list
     if not os.path.exists(os.path.join(steam_installation_folder, "steam.exe")):
-        print("未设置Steam安装目录，开始主动扫描")
+        print(steam_location_autodetect_start_notice[display_lang])
         scan_steam_installation()
     steam_lib_vdf = os.path.join(steam_installation_folder, "steamapps/libraryfolders.vdf").replace("\\", "/")
     if not os.path.exists(steam_lib_vdf):
-        print("Steam游戏列表库文件损坏，无法继续")
+        print(steam_library_vdf_broken_notice[display_lang])
         return False
     vdf_info_dict = vdf.load(open(steam_lib_vdf))
     for lib_id in vdf_info_dict['libraryfolders'].keys():
@@ -68,14 +71,19 @@ def dl_all_game_icon():
     for app_id in all_game_id_list:
         game_info = (client.get_product_info(apps=[app_id, ]))['apps'][app_id]['common']
         try:
-            game_name = game_info["name_localized"]["schinese"]
+            if display_lang == "schinese":
+                game_name = game_info["name_localized"]["schinese"]
+            elif display_lang == "tchinese":
+                game_name = game_info["name_localized"]["tchinese"]
+            else:
+                game_name = game_info["name"]
         except KeyError:
             game_name = game_info["name"]
         if game_info["name"] == "Steamworks Common Redistributables":
             continue
         if "clienticon" in list(game_info.keys()):
             if os.path.exists(os.path.join(steam_icon_folder, game_info["clienticon"] + '.ico')):
-                print("游戏 %s 程序图标已存在，跳过" % game_name)
+                print(steam_game_icon_existed_notice[display_lang] % game_name)
                 continue
             game_icon_url = steam_client_icon_base_url + str(app_id) + "/" + game_info["clienticon"] + '.ico'
             game_icon_filename = os.path.join(steam_icon_folder, game_info["clienticon"] + '.ico')
@@ -86,13 +94,13 @@ def dl_all_game_icon():
                     break
                 except:
                     trials += 1
-                    print("游戏 %s 程序下载失败(第%d次)，重试中..." % (game_name, trials))
+                    print(steam_game_icon_dlretry_notice % (game_name, trials, max_retry))
             if os.path.exists(game_icon_filename):
-                print("游戏 %s 程序图标下载成功" % game_name)
+                print(steam_game_icon_dlsuccess_notice[display_lang] % game_name)
             else:
-                print("游戏 %s 程序下载失败" % game_name)
+                print(steam_game_icon_dlfail_notice[display_lang] % game_name)
         else:
-            print("游戏 %s 无程序图标，跳过" % game_name)
+            print(steam_game_icon_dlna_notice[display_lang] % game_name)
     return True
 
 
