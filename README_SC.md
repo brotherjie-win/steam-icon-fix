@@ -42,5 +42,5 @@
 (1)HTTP_PROXY:http://<proxy_ip>:<proxy_port>  
 (2)HTTPS_PROXY:http://<proxy_ip>:<proxy_port>  
 (3)FTP_PROXY:http://<proxy_ip>:<proxy_port>  
-5. 在上面打开的窗口中一直点击"确定"，应用代理设置，然后重新运行程序即可解决问题.  
+5. 在上面打开的窗口中一直点击"确定"，应用代理设置，然后重新运行程序即可解决问题。  
 
