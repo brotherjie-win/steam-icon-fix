@@ -31,7 +31,7 @@ Supported language: Simplified Chinese(China Mainland), Traditional Chinese(Hong
 ## For proxy users
 ### ❌ Error: You may encounter SSLEOFError(8, ‘EOF occurred in violation of protocol') on any Python programs using urllib if you do not follow these steps to configurate proxy settings for Python urllib on Windows.
 ### ℹ Reason 
-If proxy program does not specify the exact protocol it uses, urllib will assign the same protocol according to the URI you provided. For example, when accessing a HTTP site(starting with http://), it will chosee "http://<proxy_ip>:<proxy_port>" as proxy server address. Correspondingly, it will prefer "https://<proxy_ip>:<proxy_port>"(sites starting with https://) or "ftp://<proxy_ip>:<proxy_port>"(sites starting with ftp://)
+If proxy program does not specify the exact protocol it uses, urllib will assign the same protocol according to the URI you provided. For example, when accessing a HTTP site(starting with http://), it will chosee "http://<proxy_ip>:<proxy_port>" as proxy server address. Correspondingly, it will prefer "https://<proxy_ip>:<proxy_port>"(sites starting with https://) or "ftp://<proxy_ip>:<proxy_port>"(sites starting with ftp://) when accessing HTTPS and FTP sites.
 ### ℹ Fixes 
 If you do not encounter connectivity issues when accessing Steam, you may simply quit your proxy programs and it will be ok then.  
 But if you rely on a proxy to access Steam, following these steps:  
